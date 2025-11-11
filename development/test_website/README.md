@@ -1,14 +1,13 @@
 # Test Website
 
-Test harness for Salesforce Embedded Messaging integration and web crawler testing.
+Test harness for Salesforce Embedded Messaging integration testing.
 
 ## Purpose
 
 This test website serves multiple purposes:
 1. **Integration Testing**: Test Salesforce Embedded Messaging (chat widget) in a production-like environment
-2. **Web Crawler Testing**: Test robots.txt configuration and web crawler behavior
-3. **GitHub Pages Deployment**: Practice CI/CD workflows with automatic deployments
-4. **Version Tracking**: Track deployed versions with git branch, commit, and build timestamps
+2. **GitHub Pages Deployment**: Practice CI/CD workflows with automatic deployments
+3. **Version Tracking**: Track deployed versions with git branch, commit, and build timestamps
 
 ## Directory Structure
 
@@ -20,8 +19,7 @@ test_website/
 │   ├── realfast.js        # Production chat integration code
 │   └── integration.js     # Staging chat integration code
 ├── static/
-│   ├── first-level.html   # Test page for crawler depth testing
-│   └── robots.txt         # Web crawler configuration
+│   └── first-level.html   # Test page for navigation testing
 ├── tests/
 │   └── setup.js           # Vitest test setup
 ├── dist/                  # Built files (generated)
@@ -148,12 +146,11 @@ Your site will be available at: `https://[GITHUB_ORG].github.io/[REPO_NAME]/`
 3. Verify staging chat widget loads with staging configuration
 4. Test chat functionality in staging environment
 
-### Test Web Crawler Configuration
+### Test Navigation
 
-1. Check `static/robots.txt` for crawler rules
-2. Verify crawlers respect image exclusion rules
-3. Test first-level page navigation
-4. Verify version info displays correctly
+1. Test first-level page navigation
+2. Verify all links work correctly
+3. Verify version info displays correctly
 
 ## Version Information
 
