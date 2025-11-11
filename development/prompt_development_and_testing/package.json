@@ -1,7 +1,7 @@
 {
-  "name": "sim-prompt-testing",
+  "name": "[project-name]-prompt-testing",
   "version": "1.0.0",
-  "description": "Testing framework for SIM Agentforce prompt templates",
+  "description": "Testing framework for Salesforce Agentforce prompt templates",
   "type": "module",
   "scripts": {
     "test": "vitest",
@@ -21,10 +21,9 @@
     "salesforce",
     "agentforce",
     "prompt",
-    "testing",
-    "sim"
+    "testing"
   ],
-  "author": "SIM Team",
+  "author": "[TEAM_NAME]",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.10.0",

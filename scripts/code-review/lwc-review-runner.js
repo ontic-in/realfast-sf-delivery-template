@@ -601,8 +601,8 @@ function getESLintReport(options = {}) {
   const absoluteReportPath = path.resolve(reportPath);
 
   // ESLint project paths - LWC specific
-  // Run from SIM_SF_project directory where eslint config exists
-  const eslintCommand = `cd development/SIM_SF_project && npx eslint force-app/main/default/lwc/**/*.js --format json --output-file ${absoluteReportPath}`;
+  // Run from sf_project directory where eslint config exists
+  const eslintCommand = `cd development/sf_project && npx eslint force-app/main/default/lwc/**/*.js --format json --output-file ${absoluteReportPath}`;
 
   // Verbose logging
   if (options.verbose) {
@@ -733,9 +733,9 @@ async function getFilesToReview(options = {}) {
   else if (options.pr) {
     filesToReview = await fetchPRFiles(options.pr, options);
   }
-  // --all flag (all LWC files in development/SIM_SF_project/force-app/)
+  // --all flag (all LWC files in development/sf_project/force-app/)
   else if (options.all) {
-    const findCommand = 'find development/SIM_SF_project/force-app/main/default/lwc -type f \\( -name "*.js" -o -name "*.html" -o -name "*.css" \\) ! -path "*/__tests__/*"';
+    const findCommand = 'find development/sf_project/force-app/main/default/lwc -type f \\( -name "*.js" -o -name "*.html" -o -name "*.css" \\) ! -path "*/__tests__/*"';
 
     if (options.verbose) {
       console.log(`[Files] Finding all LWC files: ${findCommand}`);

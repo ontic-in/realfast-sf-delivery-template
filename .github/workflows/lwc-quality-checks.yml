@@ -4,12 +4,12 @@ on:
   push:
     branches: [main, develop]
     paths:
-      - 'development/SIM_SF_project/**'
+      - 'development/sf_project/**'
       - '.github/workflows/lwc-quality-checks.yml'
   pull_request:
     branches: [main, develop]
     paths:
-      - 'development/SIM_SF_project/**'
+      - 'development/sf_project/**'
       - '.github/workflows/lwc-quality-checks.yml'
 
 jobs:
@@ -26,14 +26,14 @@ jobs:
         with:
           node-version: '18.x'
           cache: 'npm'
-          cache-dependency-path: development/SIM_SF_project/package-lock.json
+          cache-dependency-path: development/sf_project/package-lock.json
 
       - name: Install dependencies
-        working-directory: development/SIM_SF_project
+        working-directory: development/sf_project
         run: npm ci
 
       - name: Run ESLint
-        working-directory: development/SIM_SF_project
+        working-directory: development/sf_project
         run: npm run lint
 
   jest:
@@ -50,14 +50,14 @@ jobs:
         with:
           node-version: '18.x'
           cache: 'npm'
-          cache-dependency-path: development/SIM_SF_project/package-lock.json
+          cache-dependency-path: development/sf_project/package-lock.json
 
       - name: Install dependencies
-        working-directory: development/SIM_SF_project
+        working-directory: development/sf_project
         run: npm ci
 
       - name: Run Jest tests with coverage
-        working-directory: development/SIM_SF_project
+        working-directory: development/sf_project
         run: npm run test:unit:coverage
 
       - name: Upload coverage reports
@@ -65,12 +65,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: lwc-coverage-report-${{ github.run_id }}
-          path: development/SIM_SF_project/coverage/
+          path: development/sf_project/coverage/
           retention-days: 30
 
       - name: Coverage Summary
         if: always()
-        working-directory: development/SIM_SF_project
+        working-directory: development/sf_project
         run: |
           if [ -f coverage/coverage-summary.json ]; then
             echo "## 📊 Test Coverage Summary" >> $GITHUB_STEP_SUMMARY

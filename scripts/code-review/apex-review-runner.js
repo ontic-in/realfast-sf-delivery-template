@@ -612,8 +612,8 @@ function getPMDReport(options = {}) {
   const absoluteReportPath = path.resolve(reportPath);
 
   // PMD project paths
-  const pmdProjectDir = 'development/SIM_SF_project';
-  const pmdCommand = `cd ${pmdProjectDir} && PMD_APEX_ROOT_DIRECTORY=$(pwd) pmd check -d force-app/main/default/classes -R sim-pmd-ruleset.xml -f json -r ${absoluteReportPath}`;
+  const pmdProjectDir = 'development/sf_project';
+  const pmdCommand = `cd ${pmdProjectDir} && PMD_APEX_ROOT_DIRECTORY=$(pwd) pmd check -d force-app/main/default/classes -R pmd-ruleset.xml -f json -r ${absoluteReportPath}`;
 
   // T016: Verbose logging
   if (options.verbose) {

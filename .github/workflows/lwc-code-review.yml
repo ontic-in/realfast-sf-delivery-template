@@ -4,9 +4,9 @@ on:
   pull_request:
     branches: [main, develop]
     paths:
-      - 'development/SIM_SF_project/force-app/**/lwc/**/*.html'
-      - 'development/SIM_SF_project/force-app/**/lwc/**/*.css'
-      - 'development/SIM_SF_project/force-app/**/lwc/**/*.js'
+      - 'development/sf_project/force-app/**/lwc/**/*.html'
+      - 'development/sf_project/force-app/**/lwc/**/*.css'
+      - 'development/sf_project/force-app/**/lwc/**/*.js'
       - '.github/workflows/lwc-code-review.yml'
 
 jobs:

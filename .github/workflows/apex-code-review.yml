@@ -4,8 +4,8 @@ on:
   pull_request:
     branches: [main, develop]
     paths:
-      - 'development/SIM_SF_project/force-app/**/*.cls'
-      - 'development/SIM_SF_project/force-app/**/*.trigger'
+      - 'development/sf_project/force-app/**/*.cls'
+      - 'development/sf_project/force-app/**/*.trigger'
       - '.github/workflows/apex-code-review.yml'
 
 jobs:

@@ -1,7 +1,7 @@
 {
-  "name": "sim-agentforce",
+  "name": "[project-name]",
   "version": "1.0.0",
-  "description": "SIM Agentforce project with prompt template testing automation",
+  "description": "Salesforce Agentforce project with prompt template testing automation",
   "private": true,
   "type": "module",
   "scripts": {
@@ -15,10 +15,10 @@
     "playwright:report": "playwright show-report",
     "ci": "npm run ci:apex && npm run ci:lwc && npm run ci:lint && npm run ci:pmd && npm run ci:apex-review && npm run ci:lwc-review && npm run ci:prompt-review",
     "ci:full": "npm run ci && npm run test:functional",
-    "ci:apex": "sf apex run test --target-org SimDev --result-format json --concise",
-    "ci:lwc": "cd development/SIM_SF_project && npm test",
-    "ci:lint": "cd development/SIM_SF_project && npm run lint",
-    "ci:pmd": "cd development/SIM_SF_project && PMD_APEX_ROOT_DIRECTORY=$(pwd) pmd check -d force-app/main/default/classes -R sim-pmd-ruleset.xml -f json",
+    "ci:apex": "sf apex run test --target-org [ORG_ALIAS] --result-format json --concise",
+    "ci:lwc": "cd development/sf_project && npm test",
+    "ci:lint": "cd development/sf_project && npm run lint",
+    "ci:pmd": "cd development/sf_project && PMD_APEX_ROOT_DIRECTORY=$(pwd) pmd check -d force-app/main/default/classes -R pmd-ruleset.xml -f json",
     "ci:apex-review": "bash scripts/ci-apex-review.sh",
     "ci:lwc-review": "bash scripts/ci-lwc-review.sh",
     "ci:prompt-review": "bash scripts/ci-prompt-review.sh",
@@ -74,5 +74,5 @@
     "automation",
     "playwright"
   ],
-  "author": "SIM Team"
+  "author": "[TEAM_NAME]"
 }

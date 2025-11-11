@@ -1,4 +1,4 @@
-# SIM Prompt Development & Testing Framework
+# Prompt Development & Testing Framework
 
 A Test-Driven Development (TDD) framework for Salesforce Agentforce prompt templates, designed for iterative prompt engineering with comprehensive testing automation.
 
@@ -188,8 +188,8 @@ The framework includes an automated review system that evaluates both **prompt t
 ```bash
 # Review a prompt template and its test suite
 npm run review-prompt -- \
-  --prompt prompts/SIM_Knowledge_Retriever_With_Validation.md \
-  --test tests/prompt/sim_prompts.test.ts
+  --prompt prompts/Example_Data_Extraction.md \
+  --test tests/prompt/example-data-extraction.test.ts
 
 # Verbose mode (shows full JSON review)
 npm run review-prompt -- \

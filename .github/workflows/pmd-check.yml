@@ -29,13 +29,13 @@ jobs:
 
       - name: Run PMD analysis with comprehensive rulesets
         run: |
-          CLASSES_DIR="development/SIM_SF_project/force-app/main/default/classes"
+          CLASSES_DIR="development/sf_project/force-app/main/default/classes"
 
           if [ -d "$CLASSES_DIR" ] && [ "$(ls -A $CLASSES_DIR/*.cls 2>/dev/null)" ]; then
             echo "Analyzing Apex classes in $CLASSES_DIR"
-            cd development/SIM_SF_project
+            cd development/sf_project
             PMD_APEX_ROOT_DIRECTORY=$(pwd) pmd check -d force-app/main/default/classes \
-              -R sim-pmd-ruleset.xml \
+              -R pmd-ruleset.xml \
               -f json \
               --no-progress
           else
