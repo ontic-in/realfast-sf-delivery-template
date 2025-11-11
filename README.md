@@ -28,14 +28,220 @@
 
 ### Prerequisites
 
-Before starting, ensure you have:
-- ExoWork (Claude Code) installed
-- Node.js and npm installed
-- Salesforce CLI (`sf` command) installed (if Salesforce project)
-- Docker and PostgreSQL installed and running (if needed)
-- Git configured
+Complete environment setup is critical for productive development. Follow these steps in order:
 
-### 0. Authentication Setup (DO THIS FIRST)
+#### 1. Core Development Tools
+
+**Required:**
+- **Node.js** (v18+): [Download](https://nodejs.org/)
+  ```bash
+  node --version  # Should be v18.0.0 or higher
+  ```
+- **npm** (comes with Node.js): Package manager
+  ```bash
+  npm --version
+  ```
+- **Git**: Version control
+  ```bash
+  git --version
+  ```
+- **ExoWork (Claude Code)**: AI development assistant
+  - Install from: [Claude Code Documentation](https://docs.claude.com/claude-code)
+
+#### 2. Code Quality Tools
+
+**PMD (Static Analysis for Apex/Java)**:
+```bash
+# Download PMD 7.17.0
+cd ~/tools
+wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F7.17.0/pmd-dist-7.17.0-bin.zip
+unzip pmd-dist-7.17.0-bin.zip
+
+# Add to PATH (add to ~/.zshrc or ~/.bashrc)
+export PATH="$HOME/tools/pmd-bin-7.17.0/bin:$PATH"
+
+# Verify installation
+pmd --version
+```
+
+**ESLint & Prettier** (via npm):
+```bash
+# Will be installed with project dependencies
+npm install  # Installs eslint, prettier, and all dev dependencies
+```
+
+#### 3. Salesforce CLI (if Salesforce project)
+
+```bash
+# Install Salesforce CLI
+npm install -g @salesforce/cli
+
+# Verify installation
+sf --version
+
+# Authenticate with org (replace [SF_ORG_ALIAS] with your alias)
+sf org login web --alias [SF_ORG_ALIAS] --instance-url https://test.salesforce.com
+```
+
+#### 4. Project Dependencies
+
+```bash
+# From project root
+npm install
+
+# Install husky git hooks
+npm run prepare
+
+# Verify all scripts available
+npm run  # Lists all available scripts
+```
+
+#### 5. Playwright (for E2E testing)
+
+```bash
+# Install Playwright browsers
+npx playwright install
+
+# Verify installation
+npx playwright --version
+```
+
+#### 6. MCP Integrations
+
+**ClickUp MCP:**
+1. Get API key: ClickUp Settings → Apps → API
+2. Follow setup guide: `learn/mcp/CLICKUP_MCP_SETUP.md`
+3. Test: Ask Claude Code "List my ClickUp spaces"
+
+**Slack MCP:**
+1. Get bot token from Slack workspace admin
+2. Follow setup guide: `learn/mcp/SLACK_MCP_SETUP.md`
+3. Use Team ID: 9016365878, Channel: C08V3EPT8LD
+4. Test: Ask Claude Code "Read latest Slack messages"
+
+**Perplexity MCP (Optional):**
+1. Get API key from Perplexity
+2. Follow setup guide: `learn/mcp/PERPLEXITY_MCP_SETUP.md`
+
+#### 7. Learn-Run Repository
+
+```bash
+# Clone learn-run repository (one level up from project)
+cd ..
+git clone git@github.com:ontic-in/learn-run.git
+
+# Return to project and create symlinks
+cd [REPO_NAME]
+ln -s ../learn-run/learn learn
+ln -s ../learn-run/run run
+
+# Set up Claude Code agents
+mkdir -p .claude
+ln -s ../../learn-run/agents .claude/agents
+
+# Verify symlinks
+ls -la learn run .claude/agents  # Should show symlinks
+```
+
+#### 8. Environment Configuration
+
+```bash
+# Copy environment template
+cp .env.example .env
+
+# Edit .env and add your credentials
+# Required variables (adjust for your project):
+# - ANTHROPIC_API_KEY=your_key_here
+# - CLICKUP_API_KEY=your_key_here
+# - SALESFORCE_USERNAME=your_username (if applicable)
+# - SALESFORCE_PASSWORD=your_password (if applicable)
+# [Add project-specific variables]
+```
+
+#### 9. Claude Code Settings
+
+```bash
+# Create Claude Code local settings
+cat > .claude/settings.local.json << 'SETTINGS_EOF'
+{
+  "includeCoAuthoredBy": false
+}
+SETTINGS_EOF
+```
+
+#### 10. Verification
+
+**Verify complete setup:**
+```bash
+# Check all tools installed
+node --version
+npm --version
+git --version
+pmd --version  # If using PMD
+sf --version   # If Salesforce project
+npx playwright --version
+
+# Check project dependencies
+npm list --depth=0
+
+# Run CI locally to verify everything works
+npm run ci
+
+# Expected: All checks pass ✅
+```
+
+**Verify integrations:**
+```bash
+# In Claude Code, test each integration:
+# "List my ClickUp spaces"  # Should list your ClickUp workspaces
+# "Read latest Slack messages"  # Should show recent Slack messages
+# "Query [ENTITY] from [SYSTEM]"  # If applicable
+```
+
+#### Troubleshooting
+
+**PMD not found:**
+```bash
+# Add PMD to PATH
+export PATH="$HOME/tools/pmd-bin-7.17.0/bin:$PATH"
+echo 'export PATH="$HOME/tools/pmd-bin-7.17.0/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+**npm install fails:**
+```bash
+# Clear cache and retry
+npm cache clean --force
+rm -rf node_modules package-lock.json
+npm install
+```
+
+**Salesforce auth fails:**
+```bash
+# Use web authentication (more reliable)
+sf org login web --alias [SF_ORG_ALIAS]
+# Browser will open for authentication
+```
+
+**Symlinks broken:**
+```bash
+# Ensure learn-run is at correct location
+cd ..
+ls -la  # Should see both learn-run/ and [your-project]/
+
+# Recreate symlinks
+cd [your-project]
+rm learn run
+ln -s ../learn-run/learn learn
+ln -s ../learn-run/run run
+```
+
+**Claude Code integrations not working:**
+```bash
+# Check MCP server configuration
+# Settings → MCP Servers → Verify all servers configured
+# Re-run setup guides in learn/mcp/ if needed
+```
 
 **[ADD PROJECT-SPECIFIC AUTHENTICATION INSTRUCTIONS]**
 
