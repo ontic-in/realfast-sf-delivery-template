@@ -1,0 +1,8 @@
+# Block only Salesforce bot (SFbot) from crawling images and documents
+User-agent: SFbot
+Disallow: /images/
+Disallow: /documents/
+
+# Allow all other crawlers to access everything
+User-agent: *
+Allow: /

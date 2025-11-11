@@ -1,7 +1,7 @@
 {
-  "name": "SIM-test-website",
+  "name": "[PROJECT_NAME]-test-website",
   "version": "1.0.0",
-  "description": "",
+  "description": "Test website harness for Salesforce Embedded Messaging integration",
   "main": "realfast.js",
   "scripts": {
     "test": "npm run build && vitest run",
@@ -19,16 +19,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ontic-in/SIM.git"
+    "url": "git+https://github.com/[GITHUB_ORG]/[REPO_NAME].git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/ontic-in/SIM/issues"
+    "url": "https://github.com/[GITHUB_ORG]/[REPO_NAME]/issues"
   },
-  "homepage": "https://github.com/ontic-in/SIM#readme",
+  "homepage": "https://github.com/[GITHUB_ORG]/[REPO_NAME]#readme",
   "devDependencies": {
     "@babel/cli": "^7.26.4",
     "@babel/core": "^7.26.10",
