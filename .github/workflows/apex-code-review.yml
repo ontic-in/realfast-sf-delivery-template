@@ -40,6 +40,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install sf_project dependencies
+        working-directory: development/sf_project
+        run: npm ci
+
       - name: Run Apex Code Review
         id: review
         run: |
