@@ -2,14 +2,6 @@
 
 **Purpose**: Validate Salesforce deployment documentation completeness and accuracy using evidence-based analysis.
 
-**🚨 CRITICAL OUTPUT REQUIREMENT 🚨**
-
-**YOU MUST RETURN ONLY JSON. NO MARKDOWN. NO EXPLANATORY TEXT.**
-
-Your ENTIRE response must be a single JSON object starting with `{` and ending with `}`.
-
-If you return anything other than pure JSON, the workflow will fail.
-
 ---
 
 ## TODOS CONDITIONER: Deployment Doc Validation Workflow
@@ -26,8 +18,8 @@ Review deployment documentation systematically with critical checkpoints:
 7. [🧪] **VERIFY**: Path follows pattern: tickets/{ticketId}/clickup_{ticketId}_deployment.md
 8. [📝] Parse deployment doc structure (Pre-Deployment, Package.xml, Post-Deployment)
 9. [🤔] **CRITICAL REVIEW**: Validate completeness against changed files
-10. [📝] Return ONLY the JSON object - no markdown, no text, no explanations
-11. [🧪] **VERIFY**: Output starts with { and ends with }
+10. [📝] Generate structured JSON output with errors and suggestions
+11. [🧪] **VERIFY**: JSON includes status, errors, missing components
 ```
 
 **Non-negotiable**: Every analysis step must be followed by verification. No assumptions without evidence.
@@ -160,24 +152,10 @@ Based on @learn/CONFIDENCE_SCORING_GUIDE.md - Confidence = **Evidence Validation
 </validation_rules>
 
 <output_format>
-**CRITICAL - READ THIS CAREFULLY**:
+**CRITICAL**: You MUST return ONLY valid, parseable JSON. No markdown formatting, no code blocks, no explanatory text before or after the JSON.
 
-Your ENTIRE response must be ONLY the JSON object below. Nothing else.
-
-**FORBIDDEN**:
-- ❌ NO markdown (no ## headings, no **bold**, no bullet points)
-- ❌ NO code blocks (no ```json or ```)
-- ❌ NO explanatory text before the JSON
-- ❌ NO explanatory text after the JSON
-- ❌ NO summaries, no analysis sections
-- ❌ NO "## Summary" or "**Status:**" or any human-readable text
-
-**REQUIRED**:
-- ✅ Start your response with the opening brace {
-- ✅ End your response with the closing brace }
-- ✅ Nothing before or after the JSON
-
-Your first character MUST be `{` and your last character MUST be `}`.
+**DO NOT wrap the JSON in markdown code blocks** (no ```json or ```).
+**DO NOT add any text before or after the JSON object**.
 
 Return exactly this structure as raw JSON:
 
@@ -487,29 +465,3 @@ After each analysis phase, ask:
 - Have I checked exclusion patterns correctly?
 - Are my error messages specific enough to be actionable?
 - Would I trust this validation result if someone else generated it?
-
----
-
-## FINAL REMINDER - CRITICAL OUTPUT FORMAT
-
-**YOUR ENTIRE RESPONSE MUST BE A SINGLE LINE OF JSON.**
-
-Example of CORRECT response:
-```
-{"status":"not_needed","ticketId":"86d157vhv","deploymentDocNeeded":false,"deploymentDocExists":false,"deploymentDocPath":"tickets/86d157vhv/clickup_86d157vhv_deployment.md","reason":"Only documentation and config files changed","errors":[],"missingComponents":[],"suggestions":[],"changedFiles":["exec/DEPLOYMENT_DOC_REVIEW.md"],"confidence":1.0}
-```
-
-Example of INCORRECT response (DO NOT DO THIS):
-```
-**Deployment Documentation Review Complete**
-**Result:** `not_needed`
-```
-
-Your response MUST:
-1. Start with the character `{`
-2. End with the character `}`
-3. Be valid JSON that can be parsed by `jq`
-4. Have NO text before the `{`
-5. Have NO text after the `}`
-
-If you return anything other than pure JSON, the validation will fail.
